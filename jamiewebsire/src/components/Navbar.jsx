@@ -1,44 +1,95 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const links = [
+    { href: '#about',        label: 'About' },
+    { href: '#how-it-works', label: 'Process' },
+    { href: '#guide',        label: 'Free Guide' },
+    { href: '#testimonials', label: 'Stories' },
+  ]
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-stone-100">
+    <header
+      className="sticky top-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: scrolled ? 'rgba(249,247,242,0.97)' : 'rgba(249,247,242,0.95)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: scrolled ? '1px solid rgba(141,163,153,0.25)' : '1px solid transparent',
+        boxShadow: scrolled ? '0 2px 24px rgba(45,45,45,0.06)' : 'none',
+      }}
+    >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
         {/* Logo */}
-        <a href="#" className="text-stone-800 font-semibold text-lg tracking-tight">
-          Jamie <span className="text-blue-600">Grant</span>
+        <a href="#" className="flex items-center gap-2 group">
+          <span
+            className="text-xl font-medium tracking-tight"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#2D2D2D' }}
+          >
+            Jamie Grant
+          </span>
+          <span
+            className="hidden sm:inline text-xs tracking-widest uppercase font-medium border-l pl-2 ml-1"
+            style={{ color: '#8DA399', borderColor: '#8DA399' }}
+          >
+            Coaching
+          </span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8 text-sm text-stone-500">
-          <a href="#about" className="hover:text-stone-800 transition-colors">About</a>
-          <a href="#how-it-works" className="hover:text-stone-800 transition-colors">How It Works</a>
-          <a href="#guide" className="hover:text-stone-800 transition-colors">Free Guide</a>
+        <nav className="hidden md:flex items-center gap-8 text-sm" style={{ color: '#4A4A4A' }}>
+          {links.map(l => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="transition-colors duration-200 hover:text-sage"
+              style={{ '--tw-text-opacity': 1 }}
+              onMouseEnter={e => e.target.style.color = '#8DA399'}
+              onMouseLeave={e => e.target.style.color = '#4A4A4A'}
+            >
+              {l.label}
+            </a>
+          ))}
         </nav>
 
         {/* Desktop CTA */}
         <a
           href="#book"
-          className="hidden md:inline-flex items-center gap-2 bg-stone-800 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-stone-700 transition-colors"
+          className="hidden md:inline-flex items-center gap-2 text-sm font-medium px-6 py-2.5 transition-all duration-300"
+          style={{
+            backgroundColor: '#2D2D2D',
+            color: '#F9F7F2',
+            borderRadius: '2px',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#8DA399' }}
+          onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#2D2D2D' }}
         >
-          Book a Call
+          Book a Session
         </a>
 
-        {/* Mobile menu button */}
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2 text-stone-500 hover:text-stone-800 transition-colors"
+          className="md:hidden p-2 transition-colors"
+          style={{ color: '#4A4A4A' }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
           {menuOpen ? (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}
         </button>
@@ -46,16 +97,27 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-stone-100 bg-white px-6 py-4 flex flex-col gap-4 text-sm text-stone-600">
-          <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-stone-800">About</a>
-          <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="hover:text-stone-800">How It Works</a>
-          <a href="#guide" onClick={() => setMenuOpen(false)} className="hover:text-stone-800">Free Guide</a>
+        <div
+          className="md:hidden px-6 py-6 flex flex-col gap-5 text-sm"
+          style={{ borderTop: '1px solid rgba(141,163,153,0.2)', backgroundColor: '#F9F7F2' }}
+        >
+          {links.map(l => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setMenuOpen(false)}
+              style={{ color: '#4A4A4A' }}
+            >
+              {l.label}
+            </a>
+          ))}
           <a
             href="#book"
             onClick={() => setMenuOpen(false)}
-            className="inline-flex items-center justify-center bg-stone-800 text-white font-medium px-5 py-2.5 rounded-full hover:bg-stone-700 transition-colors"
+            className="inline-flex items-center justify-center font-medium px-6 py-3 text-sm mt-1"
+            style={{ backgroundColor: '#2D2D2D', color: '#F9F7F2', borderRadius: '2px' }}
           >
-            Book a Call
+            Book a Session
           </a>
         </div>
       )}

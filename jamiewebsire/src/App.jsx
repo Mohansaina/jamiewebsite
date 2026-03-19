@@ -11,7 +11,7 @@ import './index.css'
 
 export default function App() {
   return (
-    <div className="bg-white font-sans text-stone-600 antialiased">
+    <div style={{ backgroundColor: '#F9F7F2', color: '#2D2D2D', fontFamily: "'Inter', system-ui, sans-serif" }}>
       <Navbar />
       <main>
         <Hero />

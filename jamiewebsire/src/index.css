@@ -1,25 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --color-stone-50: #fafaf9;
-  --color-stone-100: #f5f5f4;
-  --color-stone-200: #e7e5e4;
-  --color-stone-300: #d6d3d1;
-  --color-stone-400: #a8a29e;
-  --color-stone-500: #78716c;
-  --color-stone-600: #57534e;
-  --color-stone-700: #44403c;
-  --color-stone-800: #292524;
-  --color-stone-900: #1c1917;
-  --color-slate-50: #f8fafc;
-  --color-blue-50: #eff6ff;
-  --color-blue-100: #dbeafe;
-  --color-blue-600: #2563eb;
-  --color-blue-700: #1d4ed8;
-  --color-blue-800: #1e40af;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  
+  --color-charcoal: #2D2D2D;
+  --color-cream: #F9F7F2;
+  --color-sage: #8DA399;
+  --color-sage-dark: #7A8F84;
+  --color-sage-light: #A8BDB4;
+}
+
+:root {
+  --color-charcoal: #2D2D2D;
+  --color-cream: #F9F7F2;
+  --color-sage: #8DA399;
+  --color-sage-dark: #7A8F84;
+  --color-sage-light: #A8BDB4;
 }
 
 html {
@@ -30,6 +28,9 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 #root {
@@ -37,4 +38,146 @@ body {
   max-width: 100%;
   text-align: left;
   min-height: 100svh;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.text-charcoal {
+  color: var(--color-charcoal);
+}
+
+.text-cream {
+  color: var(--color-cream);
+}
+
+.text-sage {
+  color: var(--color-sage);
+}
+
+.bg-cream {
+  background-color: var(--color-cream);
+}
+
+.bg-charcoal {
+  background-color: var(--color-charcoal);
+}
+
+.bg-sage {
+  background-color: var(--color-sage);
+}
+
+.border-sage {
+  border-color: var(--color-sage);
+}
+
+.hover\:bg-sage-dark:hover {
+  background-color: var(--color-sage-dark);
+}
+
+.hover\:text-sage:hover {
+  color: var(--color-sage);
+}
+
+/* Sticky Navigation */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(249, 247, 242, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(141, 163, 153, 0.2);
+}
+
+/* Section spacing */
+.section-padding {
+  padding: 100px 0;
+}
+
+/* Button styles */
+.btn-primary {
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: transparent;
+  color: var(--color-charcoal);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--color-charcoal);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+}
+
+.btn-sage {
+  display: inline-block;
+  padding: 16px 32px;
+  background-color: var(--color-sage);
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-sage:hover {
+  background-color: var(--color-sage-dark);
+}
+
+/* Input styles */
+.input-field {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(141, 163, 153, 0.4);
+  background-color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-sage);
+}
+
+/* Step number styling */
+.step-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  color: var(--color-sage-light);
+  opacity: 0.6;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all 0.3s ease;
 }
