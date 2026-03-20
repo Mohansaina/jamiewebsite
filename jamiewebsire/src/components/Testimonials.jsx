@@ -1,13 +1,13 @@
 const testimonials = [
   {
-    quote: "I came to Jamie after fourteen years in finance — successful by every external measure, completely lost internally. The work we did together wasn't about productivity hacks or goal-setting. It was about finally understanding who I actually am, separate from my CV. Six months later I\'ve restructured my entire career around what matters to me. I feel like myself again.",
+    quote: "I came to Jamie after fourteen years in finance — successful by every external measure, completely lost internally. The work we did together wasn't about productivity hacks or goal-setting. It was about finally understanding who I actually am, separate from my CV. Six months later I've restructured my entire career around what matters to me. I feel like myself again.",
     name: 'Marcus T.',
     role: 'CFO → Portfolio Career',
     initials: 'MT',
     result: 'Left corporate to build a portfolio career aligned to his values',
   },
   {
-    quote: "I was sceptical — I\'d worked with coaches before and always felt like I was being sold a system. Jamie doesn\'t do that. She listens in a way that makes you think more clearly just by talking to her. The clarity I found wasn\'t handed to me; she helped me excavate it myself. That\'s a completely different experience, and one that actually lasts.",
+    quote: "I was sceptical — I'd worked with coaches before and always felt like I was being sold a system. Jamie doesn't do that. She listens in a way that makes you think more clearly just by talking to her. The clarity I found wasn't handed to me; she helped me excavate it myself. That's a completely different experience, and one that actually lasts.",
     name: 'Rachel O.',
     role: 'Senior Partner, Law',
     initials: 'RO',
